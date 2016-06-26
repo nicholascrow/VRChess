@@ -10,11 +10,11 @@ public static class GameMaster {
 	}
 	public static GameObject[,] gameBoard;
 
-	public struct PieceAndLocation{
+	/*public struct PieceAndLocation{
 		public GameObject piece;
 		public Tile pieceTile;
 
-	}
+	}*/
 
 	public static GameObject selectedPiece;
 

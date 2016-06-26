@@ -35,16 +35,20 @@ public class ChessBoard : MonoBehaviour {
 			}
 		}
 	}
+	//make the board and lay out the pieces
 	void Start(){
 		StartCoroutine (MakeBoard ());
 	}
+
+
 	void Update(){
 
 	}
 	void addPawn(int x, int y){
 		if (x == 1 || x == 6) {
 			GameMaster.gameBoard [x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive (PrimitiveType.Sphere);
-			GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.AddComponent<Pawn> ();
+			GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.AddComponent<Piece> ();
+			GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.GetComponent<Piece> ().type = Piece.pieceType.Pawn;
 			GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard [x, y].transform.position + new Vector3 (0, 1, 0);
 		}
 	}

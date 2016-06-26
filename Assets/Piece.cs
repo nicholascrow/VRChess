@@ -10,9 +10,21 @@ public class Piece : MonoBehaviour {
 		King,
 		Queen
 	}
+
+	//GameMaster.PieceAndLocation piece;
+	public pieceType type;
+
+
+	void OnMouseDown(){
+		GameMaster.selectedPiece = this.transform.root.gameObject;
+		print (type + " Selected!");
+		//create joint?
+	}
+
+
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
