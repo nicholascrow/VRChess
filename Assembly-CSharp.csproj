@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\ChessBoard.cs" />
      <Compile Include="Assets\GameMaster.cs" />
+     <Compile Include="Assets\Pawn.cs" />
      <Compile Include="Assets\Piece.cs" />
      <Compile Include="Assets\Tile.cs" />
  <Reference Include="UnityEngine.UI">
