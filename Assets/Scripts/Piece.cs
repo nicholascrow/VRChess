@@ -178,5 +178,18 @@ public abstract class Piece : MonoBehaviour
         c.a = value;
         piece.GetComponent<Renderer>().material.color = c;
     }
+
+   protected GameMaster.Move moveCreator(int addX, int addY)
+    {
+        GameMaster.Move m = new GameMaster.Move();
+        m.OldLocation = locationIndices;
+        m.MovedPiece = GameMaster.pieceBoard[(int)locationIndices.x, (int)locationIndices.y];
+        m.NewLocation = new Vector2(locationIndices.x + addX, locationIndices.y + addY);
+        if (m.NewLocation.x != -1)
+        {
+            m.TakenPiece = GameMaster.pieceBoard[(int)m.NewLocation.x, (int)m.NewLocation.y];
+        }
+        return m;
+    }
     #endregion
 }

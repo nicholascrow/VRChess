@@ -46,12 +46,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ChessBoard.cs" />
-     <Compile Include="Assets\GameMaster.cs" />
-     <Compile Include="Assets\Knight.cs" />
-     <Compile Include="Assets\Pawn.cs" />
-     <Compile Include="Assets\Piece.cs" />
-     <Compile Include="Assets\Rook.cs" />
-     <Compile Include="Assets\Tile.cs" />
+     <Compile Include="Assets\Scripts\GameMaster.cs" />
+     <Compile Include="Assets\Scripts\Piece.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\Bishop.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\Knight.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\Pawn.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\Queen.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\Rook.cs" />
+     <Compile Include="Assets\Scripts\Tile.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/unity221/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

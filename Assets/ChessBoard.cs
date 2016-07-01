@@ -84,13 +84,32 @@ public class ChessBoard : MonoBehaviour {
                     break;
                 case 1:
                 case 6:
-                     GameMaster.gameBoard [x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive (PrimitiveType.Cube);
+                    GameMaster.gameBoard [x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive (PrimitiveType.Cube);
 			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.AddComponent<Knight> ();
 			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.GetComponent<Knight> ().type = Piece.pieceType.Knight;
 			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Knight> ().locationIndices = new Vector2 (x, y);
 			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard [x, y].transform.position + new Vector3 (0, 1, 0);
 			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Renderer> ().material.color = x == 0 ? Color.black : Color.white;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Knight>().color = x==0 ? Piece.pieceColor.Black : Piece.pieceColor.White;
+                    break;
+                case 2:
+                case 5:
+                    GameMaster.gameBoard [x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive (PrimitiveType.Capsule);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.AddComponent<Bishop> ();
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.GetComponent<Bishop> ().type = Piece.pieceType.Bishop;
+			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Bishop> ().locationIndices = new Vector2 (x, y);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard [x, y].transform.position + new Vector3 (0, 1, 0);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Renderer> ().material.color = x == 0 ? Color.black : Color.white;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Bishop>().color = x==0 ? Piece.pieceColor.Black : Piece.pieceColor.White;
+                    break;
+                case 3:
+                      GameMaster.gameBoard [x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive (PrimitiveType.Cube);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.AddComponent<Queen> ();
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.GetComponent<Queen> ().type = Piece.pieceType.Queen;
+			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Queen> ().locationIndices = new Vector2 (x, y);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard [x, y].transform.position + new Vector3 (0, 1, 0);
+			        GameMaster.gameBoard [x, y].GetComponent<Tile> ().piece.GetComponent<Renderer> ().material.color = x == 0 ? Color.black : Color.white;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Queen>().color = x==0 ? Piece.pieceColor.Black : Piece.pieceColor.White;
                     break;
             }
         }
