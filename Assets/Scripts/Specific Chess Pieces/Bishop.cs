@@ -8,7 +8,7 @@ public class Bishop : Piece {
     {
         validMoves.Clear();
 
-        GameMaster.Move m = moveCreator(1, 1);
+        
         List<GameMaster.Move> possibleMoves = new List<GameMaster.Move>();
 
         for (int rightDiagonalUp = 1; rightDiagonalUp < 8; rightDiagonalUp++) {

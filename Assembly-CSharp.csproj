@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ChessBoard.cs" />
+     <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\Scripts\GameMaster.cs" />
      <Compile Include="Assets\Scripts\Piece.cs" />
      <Compile Include="Assets\Scripts\Specific Chess Pieces\Bishop.cs" />
+     <Compile Include="Assets\Scripts\Specific Chess Pieces\King.cs" />
      <Compile Include="Assets\Scripts\Specific Chess Pieces\Knight.cs" />
      <Compile Include="Assets\Scripts\Specific Chess Pieces\Pawn.cs" />
      <Compile Include="Assets\Scripts\Specific Chess Pieces\Queen.cs" />

@@ -18,7 +18,7 @@ public class Knight : Piece
         knight.Add(moveCreator(1, -2));
         knight.Add(moveCreator(-1, 2));
         knight.Add(moveCreator(-1, -2));
-        print(knight.Count);
+ 
         for (int i = 0; i < knight.Count; i++)
         {
 

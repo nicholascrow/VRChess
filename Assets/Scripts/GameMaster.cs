@@ -9,6 +9,7 @@ public static class GameMaster {
 		P2Turn,
 		gameOver
 	}
+
     public struct Move {
         Vector2 oldLoc, newLoc;
         GameObject piece1,piece2;
@@ -40,6 +41,9 @@ public static class GameMaster {
     
     
     }
+
+    public static Player current;
+
 	public static GameObject[,] gameBoard;
 	public static GameObject[,] pieceBoard;
 
@@ -47,5 +51,6 @@ public static class GameMaster {
 	public static GameObject selectedMove;
 
 	public static gameState state;
-	public static Piece.pieceColor p1Color, p2Color;
+
+    public static GameObject Player1, Player2;
 }

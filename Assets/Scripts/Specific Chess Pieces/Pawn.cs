@@ -15,7 +15,7 @@ public class Pawn : Piece {
             currentPlayerColor = GameMaster.p2Color;*/
 
        // currentPlayerColor = GameMaster.p2Color;
-        int colorDirection = color == pieceColor.White ? -1 : 1;
+        int colorDirection = color == pieceColor.White ? 1 : -1;
 
 
                 //this would indicate getting a new piece in the pawn's place.

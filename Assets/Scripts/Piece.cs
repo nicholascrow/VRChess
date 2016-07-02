@@ -52,23 +52,27 @@ public abstract class Piece : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameMaster.selectedPiece != null)
-        {
-            GameMaster.selectedMove = GameMaster.gameBoard[(int)locationIndices.x, (int)locationIndices.y];
-            //SetTransparency(GameMaster.selectedPiece, 1f);
-            //GameMaster.selectedPiece = null;
-        }
-        else
-        {
-            //set the current selected piece
-            GameMaster.selectedPiece = this.transform.root.gameObject;
+        
+            if (GameMaster.selectedPiece != null)
+            {
 
-            //get the current color and change transparency
-            SetTransparency(GameMaster.selectedPiece, .5f);
-            print(type + " Selected!");
-            findAllValidMoves();
-        }
+                GameMaster.selectedMove = GameMaster.gameBoard[(int)locationIndices.x, (int)locationIndices.y];
+                //SetTransparency(GameMaster.selectedPiece, 1f);
+                //GameMaster.selectedPiece = null;
+            }
+            else
+            {
+                if (GameMaster.pieceBoard[(int)locationIndices.x, (int)locationIndices.y].GetComponent<Piece>().color == GameMaster.current.color)
+                {
+                //set the current selected piece
+                GameMaster.selectedPiece = this.transform.root.gameObject;
 
+                //get the current color and change transparency
+                SetTransparency(GameMaster.selectedPiece, .5f);
+                print(type + " Selected!");
+                findAllValidMoves();
+            }
+        }
     }
 
 
@@ -94,6 +98,8 @@ public abstract class Piece : MonoBehaviour
                 GameMaster.pieceBoard[(int)tempTile.GetComponent<Tile>().locationIndices.x, (int)tempTile.GetComponent<Tile>().locationIndices.y] = tempPiece;
                 
                 StartCoroutine(lerpToPos(tempPiece, tempTile, tempPiece.transform.position, tempTile.transform.root.transform.position + new Vector3(0, 1, 0)));
+                Player.SwitchTurn();
+        
             }
             else
             {
@@ -132,13 +138,7 @@ public abstract class Piece : MonoBehaviour
         return false;
     }
 
-    public void colorValidMoves() {
-        for (int i = 0; i < validMoves.Count; i++) {
-            GameMaster.gameBoard[(int)validMoves[i].NewLocation.x, (int)validMoves[i].NewLocation.y].GetComponent<Renderer>().material.color = Color.yellow;
-
-        }
-    }
-
+  
 
     /// <summary>
     /// Moves the piece from its start position to the end position over 1 second.
@@ -156,6 +156,28 @@ public abstract class Piece : MonoBehaviour
         }
         tempPiece.GetComponent<Piece>().locationIndices = tempTile.GetComponent<Tile>().locationIndices;
     }
+
+
+
+
+
+
+
+
+    #region Move Highlighting
+    public void colorValidMoves()
+    {
+        for (int i = 0; i < validMoves.Count; i++)
+        {
+            GameMaster.gameBoard[(int)validMoves[i].NewLocation.x, (int)validMoves[i].NewLocation.y].GetComponent<Renderer>().material.color = Color.yellow;
+
+        }
+    }
+
+    #endregion
+
+
+
 
     #region Helper Methods
 
