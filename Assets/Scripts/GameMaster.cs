@@ -42,15 +42,27 @@ public static class GameMaster {
     
     }
 
+    //the current player (its this players turn)
     public static Player current;
 
+
+    //game board and piece board are overlayed arrays. 
 	public static GameObject[,] gameBoard;
 	public static GameObject[,] pieceBoard;
 
+
+    //the first one is the piece selected to move, and the second is the square they want to move to.
 	public static GameObject selectedPiece;
 	public static GameObject selectedMove;
 
+
+    //the state of the game (changes per turn)
 	public static gameState state;
 
+
+    //player 1 and player 2
     public static GameObject Player1, Player2;
+
+    //list of the kings used to check for check and checkmate
+    public static List<King> kings;
 }

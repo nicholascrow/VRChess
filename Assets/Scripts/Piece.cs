@@ -99,7 +99,12 @@ public abstract class Piece : MonoBehaviour
                 
                 StartCoroutine(lerpToPos(tempPiece, tempTile, tempPiece.transform.position, tempTile.transform.root.transform.position + new Vector3(0, 1, 0)));
                 Player.SwitchTurn();
-        
+                for (int i = 0; i < 8; i++) { for (int j = 0; j < 8; j++) {
+                    if (GameMaster.pieceBoard[i, j] != null) { GameMaster.pieceBoard[i, j].GetComponent<Piece>().findAllValidMoves(); }
+                } }
+                for(int i = 0; i < GameMaster.kings.Count;i++){
+                    GameMaster.kings[i].kingInCheck();
+                }
             }
             else
             {
@@ -128,6 +133,7 @@ public abstract class Piece : MonoBehaviour
            // if(validMoves[i].NewLocation
             if (validMoves[i].NewLocation.Equals(tempTile.GetComponent<Tile>().locationIndices))
             {
+                
                 return true;
             }
             else
@@ -155,6 +161,7 @@ public abstract class Piece : MonoBehaviour
             tempPiece.transform.position = Vector3.Lerp(start, end, i / .3f);
         }
         tempPiece.GetComponent<Piece>().locationIndices = tempTile.GetComponent<Tile>().locationIndices;
+
     }
 
 
@@ -182,23 +189,28 @@ public abstract class Piece : MonoBehaviour
     #region Helper Methods
 
     //set the transparency of the material on the object passed in.
-    void SetTransparency(GameObject piece, float value)
+    public void SetTransparency(GameObject piece, float value)
     {
         //make the material transparent if it isnt already
-        Material material = piece.GetComponent<Renderer>().material;
-        material.SetFloat("_Mode", 3);
-        material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        material.SetInt("_ZWrite", 0);
-        material.DisableKeyword("_ALPHATEST_ON");
-        material.EnableKeyword("_ALPHABLEND_ON");
-        material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        material.renderQueue = 3000;
+        foreach (var child in piece.GetComponentsInChildren<Renderer>())
+        {
+           
+            Material material = child.GetComponent<Renderer>().material;
+            material.SetFloat("_Mode", 3);
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            material.SetInt("_ZWrite", 0);
+            material.DisableKeyword("_ALPHATEST_ON");
+            material.EnableKeyword("_ALPHABLEND_ON");
+            material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.renderQueue = 3000;
 
 
-        Color c = piece.GetComponent<Renderer>().material.color;
-        c.a = value;
-        piece.GetComponent<Renderer>().material.color = c;
+            Color c = piece.GetComponent<Renderer>().material.color;
+            c.a = value;
+            child.GetComponent<Renderer>().material.color = c;
+        }
+
     }
 
    protected GameMaster.Move moveCreator(int addX, int addY)

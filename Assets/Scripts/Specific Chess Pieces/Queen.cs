@@ -203,13 +203,6 @@ public class Queen : Piece {
             }
         }
 
-
-
-
-
-
-
-
         colorValidMoves();
     }
 

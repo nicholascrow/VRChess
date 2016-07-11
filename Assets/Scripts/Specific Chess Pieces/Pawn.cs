@@ -7,14 +7,45 @@ public class Pawn : Piece {
     public override void findAllValidMoves()
     {
         validMoves.Clear();
+   /*     List<GameMaster.Move> pawn = new List<GameMaster.Move>();
+
+        int colorMultiplier = color == pieceColor.White ? 1 : -1;
+        // move forward 1
+        if (GameMaster.pieceBoard[(int)locationIndices.x + colorMultiplier*1, (int)locationIndices.y] == null)
+        {
+            pawn.Add(moveCreator(1, 0));
+        }
+        if (firstMove && GameMaster.pieceBoard[(int)locationIndices.x + colorMultiplier*2,(int)locationIndices.y] == null) 
+        {
+            pawn.Add(moveCreator(2, 0));
+        }
+
+        if (GameMaster.pieceBoard[(int)locationIndices.x + colorMultiplier*1, (int)locationIndices.y - 1] != null) {
+            pawn.Add(moveCreator(1, -1));
+        }
+        if (GameMaster.pieceBoard[(int)locationIndices.x + colorMultiplier*1, (int)locationIndices.y + 1] != null) {
+            pawn.Add(moveCreator(1, 1));
+        }
+
+        for (int i = 0; i < pawn.Count; i++)
+        {
+
+            if (!pawn[i].NewLocation.Equals(new Vector2(-1, -1)))
+            {
+                if (pawn[i].TakenPiece != null && pawn[i].TakenPiece.GetComponent<Piece>().color != color)
+                {
+                    validMoves.Add(pawn[i]);
+                }
+                else if (pawn[i].TakenPiece == null)
+                {
+                    validMoves.Add(pawn[i]);
+                }
+            }
+        }
+
+*/
 
 
-        /*if (GameMaster.state == GameMaster.gameState.P1Turn)
-            currentPlayerColor = GameMaster.p1Color;
-        else
-            currentPlayerColor = GameMaster.p2Color;*/
-
-       // currentPlayerColor = GameMaster.p2Color;
         int colorDirection = color == pieceColor.White ? 1 : -1;
 
 
@@ -78,6 +109,7 @@ public class Pawn : Piece {
                         }
                     }
                 }
+
         colorValidMoves();
     }
 
