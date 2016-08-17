@@ -6,21 +6,13 @@ public class ChessBoard : MonoBehaviour {
     public GameObject Pawn;
 	//this makes the first square black
 	private bool isBlack = false;
+    GameObject board;
 
+    //make the board and lay out the pieces
+    void Start(){
+        board = new GameObject("Board");
 
-	//make the board and lay out the pieces
-	void Start(){
-        if (Random.value > .5f)
-        {
-     //       GameMaster.p1Color = Piece.pieceColor.White;
-       //     GameMaster.p2Color = Piece.pieceColor.Black;
-            //GameMaster.Player1.GetComponent<Player>().color = Piece.pieceColor.White;
-            //GameMaster.Player2.GetComponent<Player>().color = Piece.pieceColor.Black;
-
-        }
-
-
-		StartCoroutine (MakeBoard ());
+        StartCoroutine (MakeBoard ());
         MakePlayer();
 	}
     void MakePlayer() {
@@ -66,6 +58,8 @@ public class ChessBoard : MonoBehaviour {
                 //GameMaster.gameBoard [i, j] = new Tile ();	
 
                 GameMaster.gameBoard[i, j] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                GameMaster.gameBoard[i, j].name = "Tile<" + i + "," + j + ">";
+               // GameMaster.gameBoard[i, j].transform.parent = board.transform;
                 GameMaster.gameBoard[i, j].AddComponent<Tile>();
 
                 GameMaster.gameBoard[i, j].GetComponent<Tile>().locationIndices = new Vector2(i, j);
@@ -89,32 +83,30 @@ public class ChessBoard : MonoBehaviour {
     }
 
 
-    void addPiece(int x, int y)
-    {
-        if (x == 1 || x == 6)
-        {
+    void addPiece(int x, int y) {
+        if(x == 1 || x == 6) {
+
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece = Instantiate(Pawn);
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.AddComponent<CapsuleCollider>();
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.AddComponent<Pawn>();
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Pawn>().type = Piece.pieceType.Pawn;
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Pawn>().locationIndices = new Vector2(x, y);
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard[x, y].transform.position + new Vector3(0, 1, 0);
-            foreach (var child in GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponentsInChildren<Renderer>())
-            {
+            GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "Pawn";
+            foreach(var child in GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponentsInChildren<Renderer>()) {
                 //child.gameObject.AddComponent<MeshCollider>();
-                 child.GetComponent<Renderer>().material.color = x == 1 ? Color.white : Color.black;
-                
+                child.GetComponent<Renderer>().material.color = x == 1 ? Color.white : Color.black;
+
             }
 
             GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Pawn>().color = x == 1 ? Piece.pieceColor.White : Piece.pieceColor.Black;
-            
-        }   
-        if (x == 0 || x == 7)
-        {
-            switch (y)
-            {
+
+        }
+        if(x == 0 || x == 7) {
+            switch(y) {
                 case 0:
                 case 7:
+
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.AddComponent<Rook>();
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Rook>().type = Piece.pieceType.Rook;
@@ -122,6 +114,7 @@ public class ChessBoard : MonoBehaviour {
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard[x, y].transform.position + new Vector3(0, 1, 0);
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Renderer>().material.color = x == 0 ? Color.white : Color.black;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Rook>().color = x == 0 ? Piece.pieceColor.White : Piece.pieceColor.Black;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "Rook";
                     break;
                 case 1:
                 case 6:
@@ -132,6 +125,7 @@ public class ChessBoard : MonoBehaviour {
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard[x, y].transform.position + new Vector3(0, 1, 0);
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Renderer>().material.color = x == 0 ? Color.white : Color.black;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Knight>().color = x == 0 ? Piece.pieceColor.White : Piece.pieceColor.Black;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "Knight";
                     break;
                 case 2:
                 case 5:
@@ -142,6 +136,7 @@ public class ChessBoard : MonoBehaviour {
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard[x, y].transform.position + new Vector3(0, 1, 0);
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Renderer>().material.color = x == 0 ? Color.white : Color.black;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Bishop>().color = x == 0 ? Piece.pieceColor.White : Piece.pieceColor.Black;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "Bishop";
                     break;
                 case 3:
 
@@ -152,6 +147,7 @@ public class ChessBoard : MonoBehaviour {
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.transform.position = GameMaster.gameBoard[x, y].transform.position + new Vector3(0, 1, 0);
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Renderer>().material.color = x == 0 ? Color.white : Color.black;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Queen>().color = x == 0 ? Piece.pieceColor.White : Piece.pieceColor.Black;
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "Queen";
                     break;
                 case 4:
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -162,6 +158,7 @@ public class ChessBoard : MonoBehaviour {
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<Renderer>().material.color = x == 0 ? Color.white : Color.black;
                     GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<King>().color = x == 0 ? Piece.pieceColor.White : Piece.pieceColor.Black;
                     GameMaster.kings.Add(GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.GetComponent<King>());
+                    GameMaster.gameBoard[x, y].GetComponent<Tile>().piece.name = "King";
                     break;
             }
         }
@@ -171,4 +168,3 @@ public class ChessBoard : MonoBehaviour {
     #endregion
 
 }
-
