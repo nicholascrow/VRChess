@@ -120,7 +120,7 @@ public class Queen : Piece {
             }
             else
             {
-                print(GameMaster.pieceBoard[(int)locationIndices.x + rightDiagonalUp, (int)locationIndices.y + rightDiagonalUp].GetComponent<Piece>().type);
+             //   if(GameMaster.debugMode) print(GameMaster.pieceBoard[(int)locationIndices.x + rightDiagonalUp, (int)locationIndices.y + rightDiagonalUp].GetComponent<Piece>().type);
 
                 break;
             }
@@ -203,7 +203,7 @@ public class Queen : Piece {
             }
         }
 
-        colorValidMoves();
+      //  colorValidMoves();
     }
 
 }

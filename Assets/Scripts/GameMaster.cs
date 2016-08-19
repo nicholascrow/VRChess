@@ -65,4 +65,13 @@ public static class GameMaster {
 
     //list of the kings used to check for check and checkmate
     public static List<King> kings;
+
+
+    public static int debugModeLevel = 0;
+}
+public enum logLevel {
+OFF = 0,
+LOW,
+MED,
+HIGH
 }

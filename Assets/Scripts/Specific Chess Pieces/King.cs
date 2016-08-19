@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class King : Piece {
+    public bool isInCheck;
+
+
+
     public override void findAllValidMoves()
     {
         validMoves.Clear();
@@ -33,7 +37,7 @@ public class King : Piece {
                 }
             }
         }
-        colorValidMoves();
+       // colorValidMoves();
     }
 
 
@@ -152,7 +156,7 @@ public class King : Piece {
             }
             else
             {
-                print(GameMaster.pieceBoard[(int)locationIndices.x + rightDiagonalUp, (int)locationIndices.y + rightDiagonalUp].GetComponent<Piece>().type);
+              //  if(GameMaster.debugMode) print(GameMaster.pieceBoard[(int)locationIndices.x + rightDiagonalUp, (int)locationIndices.y + rightDiagonalUp].GetComponent<Piece>().type);
 
                 break;
             }
@@ -223,36 +227,35 @@ public class King : Piece {
         //  CRY NUL Reference EXCEPTION
         #region halpppp
         
-        List<GameMaster.Move> better = new List<GameMaster.Move>();
+        List<GameMaster.Move> possibleCheck = new List<GameMaster.Move>();
+
+
         for (int i = 0; i < possibleMoves.Count; i++) {
-           // if (possibleMoves[i].TakenPiece == null) { possibleMoves.Remove(possibleMoves[i]);break;}
-            //if (possibleMoves[i].TakenPiece.GetComponent<Piece>().color == color) { possibleMoves.Remove(possibleMoves[i]); }
-            if (possibleMoves[i].TakenPiece != null && possibleMoves[i].TakenPiece.GetComponent<Piece>().color != color) 
-            { 
-                better.Add(possibleMoves[i]);
-              //  print("here!"); 
-             //   possibleMoves[i].TakenPiece.GetComponent<Piece>().findAllValidMoves(); 
+
+            //if this condition is true then that piece cannot cause check
+            if(possibleMoves[i].TakenPiece != null && possibleMoves[i].TakenPiece.GetComponent<Piece>().color != color) {
+                //if(GameMaster.debugMode) print("Possible check: " + possibleMoves[i].TakenPiece);
+                possibleCheck.Add(possibleMoves[i]);
             }
         }
-       // print(better.Count);
-        for (int i = 0; i < better.Count; i++)
+
+        
+        for (int i = 0; i < possibleCheck.Count; i++)
         {
-           // print(better[i]);
-          //  if (better[i].TakenPiece != null) { better[i].TakenPiece.GetComponent<Piece>().findAllValidMoves(); }
-            for(int j = 0; j <  better[i].TakenPiece.GetComponent<Piece>().validMoves.Count;j++){
-                print(better[i].TakenPiece.GetComponent<Piece>().type);
-              //  print(better[i].TakenPiece.GetComponent<Piece>().validMoves.Count);
-                better[i].TakenPiece.GetComponent<Piece>().colorValidMoves();
-                if (better[i].TakenPiece.GetComponent<Piece>().validMoves[j].TakenPiece == this.gameObject)
+            for(int j = 0; j <  possibleCheck[i].TakenPiece.GetComponent<Piece>().validMoves.Count;j++)
                 {
-                    print("IN CHECK!");
+                possibleCheck[i].TakenPiece.GetComponent<Piece>().findAllValidMoves();
+               // possibleCheck[i].TakenPiece.GetComponent<Piece>().colorValidMoves();
+                if(possibleCheck[i].TakenPiece.GetComponent<Piece>().validMoves[j].TakenPiece == this.gameObject) {
+                 //   if(GameMaster.debugMode) print("IN CHECK!");
                     return true;
                 }
-                else
-                    print("WUT");
+                //else
+                    //if(GameMaster.debugMode) print(possibleCheck[i].TakenPiece.name);
+                   // if(GameMaster.debugMode) print("WUT");
            // possibleMoves[i].TakenPiece.GetComponent<Piece>().validMoves
             }
-            //print(better.Count);
+            //if(GameMaster.debugMode) print(better.Count);
         }
 
 

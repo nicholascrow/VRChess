@@ -62,7 +62,7 @@ public class Pawn : Piece {
                     m.MovedPiece = GameMaster.pieceBoard[(int)locationIndices.x, (int)locationIndices.y];
 
 
-                 //   print("Checking [" + (locationIndices.x + colorForPiece) + ", " + locationIndices.y + "]");
+                 //   if(GameMaster.debugMode) print("Checking [" + (locationIndices.x + colorForPiece) + ", " + locationIndices.y + "]");
                     if (GameMaster.pieceBoard[(int)locationIndices.x + colorDirection, (int)locationIndices.y] == null)
                     {                        
                         m.NewLocation = new Vector2((int)locationIndices.x + colorDirection, (int)locationIndices.y);
@@ -82,7 +82,7 @@ public class Pawn : Piece {
 
                     if ((int)locationIndices.y > 0)
                     {
-                   //     print("Checking [" + (locationIndices.x + colorForPiece) + ", " + (locationIndices.y - 1) + "]");
+                   //     if(GameMaster.debugMode) print("Checking [" + (locationIndices.x + colorForPiece) + ", " + (locationIndices.y - 1) + "]");
                         if (GameMaster.pieceBoard[(int)locationIndices.x + colorDirection, (int)locationIndices.y - 1] != null)
                         {
                             if (GameMaster.pieceBoard[(int)locationIndices.x + colorDirection, (int)locationIndices.y - 1].GetComponent<Piece>().color != color)
@@ -94,7 +94,7 @@ public class Pawn : Piece {
                         }
                     }
 
-                   // print("Checking [" + (locationIndices.x + colorForPiece) + ", " + (locationIndices.y + 1) + "]");
+                   // if(GameMaster.debugMode) print("Checking [" + (locationIndices.x + colorForPiece) + ", " + (locationIndices.y + 1) + "]");
                     if ((int)locationIndices.y < 7)
                     {
      
@@ -110,7 +110,7 @@ public class Pawn : Piece {
                     }
                 }
 
-        colorValidMoves();
+      //  colorValidMoves();
     }
 
 

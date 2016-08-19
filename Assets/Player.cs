@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    public Piece.pieceColor color;
+    public pieceColor color;
     public playerNumber type;
 
     public enum playerNumber { 

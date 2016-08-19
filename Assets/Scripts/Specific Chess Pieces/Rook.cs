@@ -95,7 +95,7 @@ public class Rook : Piece
             }
         }
 
-        colorValidMoves();
+       // colorValidMoves();
     }
 
 }

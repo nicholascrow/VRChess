@@ -37,7 +37,7 @@ public class Knight : Piece
 
 
 
-        colorValidMoves();
+    //    colorValidMoves();
     }
   
 }
