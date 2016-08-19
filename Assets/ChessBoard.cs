@@ -4,38 +4,29 @@ using System.Collections.Generic;
 
 public class ChessBoard : MonoBehaviour {
 
-
+    #region Pieces Prefabs
     public GameObject Pawn, Rook, Knight, Bishop, Queen, King;
+    #endregion
+
     //this makes the first square black
     private bool isBlack = false;
+
     GameObject board;
 
     //make the board and lay out the pieces
     void Start() {
         board = new GameObject("Board");
-
         StartCoroutine(MakeBoard());
         MakePlayer();
-    }
-    void MakePlayer() {
-        GameMaster.Player1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        GameMaster.Player1.transform.position = new Vector3(3.5f, 2f, -2f);
-        GameMaster.Player1.AddComponent<Player>();
-        GameMaster.Player1.GetComponent<Player>().type = Player.playerNumber.Player1;
-        GameMaster.Player1.GetComponent<Player>().color = pieceColor.White;
-
-        GameMaster.Player2 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        GameMaster.Player2.transform.position = new Vector3(3.5f, 2f, 9f);
-        GameMaster.Player2.AddComponent<Player>();
-        GameMaster.Player2.GetComponent<Player>().type = Player.playerNumber.Player2;
-        GameMaster.Player2.GetComponent<Player>().color = pieceColor.Black;
-
-
-        Player.SwitchTurn(GameMaster.Player1.GetComponent<Player>());
     }
 
     #region Create Board
 
+
+    /// <summary>
+    /// make the board
+    /// </summary>
+    /// <returns></returns>
     IEnumerator MakeBoard() {
         GameMaster.kings = new List<King>();
         //create new chessboard (each index is a gameobject)
@@ -80,6 +71,26 @@ public class ChessBoard : MonoBehaviour {
 			}
 		}
         */
+    }
+
+    /// <summary>
+    /// Create the player
+    /// </summary>
+    void MakePlayer() {
+        GameMaster.Player1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameMaster.Player1.transform.position = new Vector3(3.5f, 2f, -2f);
+        GameMaster.Player1.AddComponent<Player>();
+        GameMaster.Player1.GetComponent<Player>().type = Player.playerNumber.Player1;
+        GameMaster.Player1.GetComponent<Player>().color = pieceColor.White;
+
+        GameMaster.Player2 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameMaster.Player2.transform.position = new Vector3(3.5f, 2f, 9f);
+        GameMaster.Player2.AddComponent<Player>();
+        GameMaster.Player2.GetComponent<Player>().type = Player.playerNumber.Player2;
+        GameMaster.Player2.GetComponent<Player>().color = pieceColor.Black;
+
+
+        Player.SwitchTurn(GameMaster.Player1.GetComponent<Player>());
     }
 
 /// <summary>

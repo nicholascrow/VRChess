@@ -52,7 +52,9 @@ public abstract class Piece : MonoBehaviour {
 
     void OnMouseDown() {
 
+        //select the piece we're going to move
         if(GameMaster.selectedPiece != null) {
+            
 
             GameMaster.selectedMove = GameMaster.gameBoard[(int)locationIndices.x, (int)locationIndices.y];
             //SetTransparency(GameMaster.selectedPiece, 1f);

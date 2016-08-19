@@ -222,11 +222,7 @@ public class King : Piece {
             }
 
         }
-        ///////
 
-        //  CRY NUL Reference EXCEPTION
-        #region halpppp
-        
         List<GameMaster.Move> possibleCheck = new List<GameMaster.Move>();
 
 
@@ -247,20 +243,15 @@ public class King : Piece {
                 possibleCheck[i].TakenPiece.GetComponent<Piece>().findAllValidMoves();
                // possibleCheck[i].TakenPiece.GetComponent<Piece>().colorValidMoves();
                 if(possibleCheck[i].TakenPiece.GetComponent<Piece>().validMoves[j].TakenPiece == this.gameObject) {
-                 //   if(GameMaster.debugMode) print("IN CHECK!");
+                    if(GameMaster.debugModeLevel >= (int)logLevel.MED) print("IN CHECK!");
                     return true;
                 }
-                //else
-                    //if(GameMaster.debugMode) print(possibleCheck[i].TakenPiece.name);
-                   // if(GameMaster.debugMode) print("WUT");
-           // possibleMoves[i].TakenPiece.GetComponent<Piece>().validMoves
             }
-            //if(GameMaster.debugMode) print(better.Count);
+
         }
 
 
-       
-        #endregion
+
 
 
 

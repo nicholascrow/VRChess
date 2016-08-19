@@ -69,6 +69,7 @@ public static class GameMaster {
 
     public static int debugModeLevel = 0;
 }
+
 public enum logLevel {
 OFF = 0,
 LOW,
